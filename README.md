@@ -29,16 +29,22 @@ To ensure optimal functionality, prepare your server with the following requirem
 
 ### 1️⃣ **Update and Upgrade Packages**
 ```bash
+
+```
+
 sudo apt-get update -y && sudo apt-get upgrade -y
 
+```
 Create a New User
 
 It is advisable to avoid using the root user for daily tasks. Create a Frappe Bench user:
 
+```
 sudo adduser [frappe-user]
 sudo usermod -aG sudo [frappe-user]
 su [frappe-user]
 cd /home/[frappe-user]
+```
 
 ⚡ Replace [frappe-user] with your desired username, e.g., frappe.
 
@@ -46,23 +52,29 @@ cd /home/[frappe-user]
 📚 Installing Required Packages
 3️⃣ Install Git
 
+```
 sudo apt-get install git -y
+```
 
 4️⃣ Install Python Dependencies
 
 ERPNext requires Python 3.11+ and other dependencies:
 
+```
 sudo apt-get install python3-dev -y
 sudo apt-get install python3-setuptools python3-pip -y
 sudo apt install python3.12-venv -y
+```
 
 5️⃣ Install MariaDB
 
 ERPNext relies on MariaDB:
 
+```
 sudo apt-get install software-properties-common -y
 sudo apt install mariadb-server -y
 sudo mysql_secure_installation
+```
 
 
 ⚡ During the configuration:
@@ -76,86 +88,104 @@ sudo mysql_secure_installation
 
 ✏️ Edit the MariaDB configuration file:
 
+```
 sudo nano /etc/mysql/my.cnf
+```
 
 Add the following lines:
 
+```
 [mysqld]
 innodb-file-per-table=1
 character-set-client-handshake = FALSE
 character-set-server = utf8mb4
 collation-server = utf8mb4_unicode_ci
+```
 
 
 🔄 Restart MariaDB:
 
-
+```
 sudo service mysql restart
-
+```
 
 6️⃣ Install Redis Server
 
+```
 sudo apt-get install redis-server -y
+```
 
 
 7️⃣ Install CURL, Node.js, NPM, and Yarn
 🔗 Install CURL:
 
+```
 sudo apt install curl
-
+```
 
 ⚡ Install Node.js:
 
+```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 source ~/.profile
 nvm install 18
-
+```
 
 📦 Install NPM:
 
+```
 sudo apt-get install npm -y
-
+```
 
 8️⃣ Install wkhtmltopdf
 
+```
 sudo apt-get install xvfb libfontconfig wkhtmltopdf -y
-
+```
 
 🎛️ Setting Up Frappe Bench
 9️⃣ Install Frappe Bench
 
+```
 sudo -H pip3 install frappe-bench --break-system-packages
 sudo -H pip3 install ansible --break-system-packages
-
+```
 
 🔟 Initialize Frappe Bench
 
+```
 bench init frappe-bench --frappe-branch version-15
 cd frappe-bench
-
+```
 
 🔑 Change directory permissions:
 
+```
 chmod -R o+rx /home/[frappe-user]
+```
 
 1️⃣1️⃣ Create a New Site
 
+```
 bench new-site [site-name]
+```
 
 1️⃣2️⃣ Install ERPNext and Other Apps
 Download and install required apps:
 
+```
 bench get-app payments
 bench get-app --branch version-15 erpnext
 bench get-app hrms
 bench --site [site-name] install-app erpnext
 bench --site [site-name] install-app hrms
-
+```
 
 🌐 Start the server:
 
+```
 bench start
-
+```
 
 ERPNext will run on:
 🌐 http://[YOUR SERVER IP]:8000
@@ -164,21 +194,24 @@ ERPNext will run on:
 🌟 Deploying ERPNext in Production Mode
 1️⃣3️⃣ Enable Scheduler and Disable Maintenance Mode
 
+```
 bench --site [site-name] enable-scheduler
 bench --site [site-name] set-maintenance-mode off
+```
 
 1️⃣4️⃣ Setup Production Config
 
+```
 sudo bench setup production [frappe-user]
 bench setup nginx
-
+```
 
 🔄 Restart Supervisor:
 
-
+```
 sudo supervisorctl restart all
 sudo bench setup production [frappe-user]
-
+```
 
 🌐 Access your ERPNext site via:
 http://[YOUR SERVER IP]
