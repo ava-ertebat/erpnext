@@ -269,8 +269,7 @@ If you have any questions or need assistance, feel free to contact me:
 🌐 **Website:** [https://ava-ertebat.ir](https://ava-ertebat.ir)  
 📧 **Email:**  support@ava-ertebat.ir  
 📧 **Email2:** omidswordfish@gmail.com 
-
-📱 **WhatsApp:** [Chat with me on WhatsApp](https://wa.me/989163422797)
+📱 **WhatsApp:** [Chat with me on WhatsApp](https://wa.me/989163422797?text=Hi%20there!%20I%20need%20help%20with%20installing%20ERPNext%20and%20had%20some%20questions.)
 
 ---
 
