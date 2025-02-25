@@ -251,9 +251,9 @@ sudo bench setup production [frappe-user]
 
 # 🎉 Congratulations!
 
-###You have successfully installed ERPNext Version 15 on Ubuntu 24.04.
+### You have successfully installed ERPNext Version 15 on Ubuntu 24.04.
 
-##✅ Start exploring the powerful features of ERPNext and streamline your business operations.
+## ✅ Start exploring the powerful features of ERPNext and streamline your business operations.
 
 
 ---
