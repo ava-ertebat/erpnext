@@ -1,162 +1,172 @@
-<div align="center">
-    <a href="https://erpnext.com">
-	<img src="./erpnext/public/images/v16/erpnext.svg" alt="ERPNext Logo" height="80px" width="80xp"/>
-    </a>
-    <h2>ERPNext</h2>
-    <p align="center">
-        <p>Powerful, Intuitive and Open-Source ERP</p>
-    </p>
+📦 ERPNext Installing Guide
+<div align="center"> <a href="https://ava-ertebat.ir"> <img src="./erpnext/public/images/v16/erpnext.svg" alt="ERPNext Logo" height="80px" width="80px"/> </a> <h2>ERPNext</h2> <p align="center"> Powerful, Intuitive and Open-Source ERP </p> </div>
+🚀 Overview
 
-[![CI](https://github.com/frappe/erpnext/actions/workflows/server-tests-mariadb.yml/badge.svg?event=schedule)](https://github.com/frappe/erpnext/actions/workflows/server-tests-mariadb.yml)
-[![docker pulls](https://img.shields.io/docker/pulls/frappe/erpnext-worker.svg)](https://hub.docker.com/r/frappe/erpnext-worker)
+Welcome to our comprehensive guide on installing ERPNext Version 15 on Ubuntu 24.04.
+ERPNext is a powerful, open-source ERP system that streamlines business processes from inventory management to accounting.
+⚙️ Prerequisites
+💾 Software Requirements
 
-</div>
+    Updated Ubuntu 24.04
+    A user with sudo privileges
+    Python 3.11+
+    pip 20+
+    MariaDB 10.3.x
+    Node.js 18
+    Yarn 1.12+
 
-<div align="center">
-	<img src="./erpnext/public/images/v16/hero_image.png"/>
-</div>
+🖥️ Hardware Requirements (Recommended)
 
-<div align="center">
-	<a href="https://erpnext-demo.frappe.cloud/app/home">Live Demo</a>
-	-
-	<a href="https://erpnext.com">Website</a>
-	-
-	<a href="https://docs.erpnext.com">Documentation</a>
-</div>
+    4GB RAM
+    40GB Hard Disk
 
-## ERPNext
+🏗️ Step-by-Step Installation
+1️⃣ Update and Upgrade Packages
 
-100% Open-Source ERP system to help you run your business.
+sudo apt-get update -y && sudo apt-get upgrade -y
 
-### Motivation
+2️⃣ Create a New User
 
-Running a business is a complex task - handling invoices, tracking stock, managing personnel and even more ad-hoc activities. In a market where software is sold separately to manage each of these tasks, ERPNext does all of the above and more, for free.
+It is advisable to avoid using the root user for daily tasks. Create a Frappe Bench user:
 
-### Key Features
+sudo adduser [frappe-user]
+sudo usermod -aG sudo [frappe-user]
+su [frappe-user]
+cd /home/[frappe-user]
 
-- **Accounting**: All the tools you need to manage cash flow in one place, right from recording transactions to summarizing and analyzing financial reports.
-- **Order Management**: Track inventory levels, replenish stock, and manage sales orders, customers, suppliers, shipments, deliverables, and order fulfillment.
-- **Manufacturing**: Simplifies the production cycle, helps track material consumption, exhibits capacity planning, handles subcontracting, and more!
-- **Asset Management**: From purchase to perishment, IT infrastructure to equipment. Cover every branch of your organization, all in one centralized system.
-- **Projects**: Delivery both internal and external Projects on time, budget and Profitability. Track tasks, timesheets, and issues by project.
+    Replace [frappe-user] with your desired username, e.g., frappe.
 
-<details open>
+📚 Installing Required Packages
+3️⃣ Install Git
 
-<summary>More</summary>
-	<img src="https://erpnext.com/files/v16_bom.png"/>
-	<img src="https://erpnext.com/files/v16_stock_summary.png"/>
-	<img src="https://erpnext.com/files/v16_job_card.png"/>
-	<img src="https://erpnext.com/files/v16_tasks.png"/>
-</details>
+sudo apt-get install git -y
 
-### Under the Hood
+4️⃣ Install Python Dependencies
 
-- [**Frappe Framework**](https://github.com/frappe/frappe): A full-stack web application framework written in Python and Javascript. The framework provides a robust foundation for building web applications, including a database abstraction layer, user authentication, and a REST API.
+ERPNext requires Python 3.11+ and other dependencies:
 
-- [**Frappe UI**](https://github.com/frappe/frappe-ui): A Vue-based UI library, to provide a modern user interface. The Frappe UI library provides a variety of components that can be used to build single-page applications on top of the Frappe Framework.
+sudo apt-get install python3-dev -y
+sudo apt-get install python3-setuptools python3-pip -y
+sudo apt install python3.12-venv -y
 
-## Production Setup
+5️⃣ Install MariaDB
 
-### Managed Hosting
+ERPNext relies on MariaDB:
 
-You can try [Frappe Cloud](https://frappecloud.com), a simple, user-friendly and sophisticated [open-source](https://github.com/frappe/press) platform to host Frappe applications with peace of mind.
+sudo apt-get install software-properties-common -y
+sudo apt install mariadb-server -y
+sudo mysql_secure_installation
 
-It takes care of installation, setup, upgrades, monitoring, maintenance and support of your Frappe deployments. It is a fully featured developer platform with an ability to manage and control multiple Frappe deployments.
+⚡ During the configuration:
 
-<div>
-	<a href="https://erpnext-demo.frappe.cloud/app/home" target="_blank">
-		<picture>
-			<source media="(prefers-color-scheme: dark)" srcset="https://frappe.io/files/try-on-fc-white.png">
-			<img src="https://frappe.io/files/try-on-fc-black.png" alt="Try on Frappe Cloud" height="28" />
-		</picture>
-	</a>
-</div>
+    Set a root password
+    Remove anonymous users
+    Allow remote root login (set N)
+    Remove the test database
+    Reload privilege tables
 
+✏️ Edit the MariaDB configuration file:
 
+sudo nano /etc/mysql/my.cnf
 
-### Self-Hosted
-#### Docker
+Add the following lines:
 
-Prerequisites: docker, docker-compose, git. Refer [Docker Documentation](https://docs.docker.com) for more details on Docker setup.
+[mysqld]
+innodb-file-per-table=1
+character-set-client-handshake = FALSE
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
 
-Run following commands:
+🔄 Restart MariaDB:
 
-```
-git clone https://github.com/frappe/frappe_docker
-cd frappe_docker
-docker compose -f pwd.yml up -d
-```
+sudo service mysql restart
 
-After a couple of minutes, site should be accessible on your localhost port: 8080. Use below default login credentials to access the site.
-- Username: Administrator
-- Password: admin
+6️⃣ Install Redis Server
 
-See [Frappe Docker](https://github.com/frappe/frappe_docker?tab=readme-ov-file#to-run-on-arm64-architecture-follow-this-instructions) for ARM based docker setup.
+sudo apt-get install redis-server -y
 
+7️⃣ Install CURL, Node.js, NPM, and Yarn
+🔗 Install CURL:
 
-## Development Setup
-### Manual Install
+sudo apt install curl
 
-The Easy Way: our install script for bench will install all dependencies (e.g. MariaDB). See https://github.com/frappe/bench for more details.
+⚡ Install Node.js:
 
-New passwords will be created for the ERPNext "Administrator" user, the MariaDB root user, and the frappe user (the script displays the passwords and saves them to ~/frappe_passwords.txt).
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+source ~/.profile
+nvm install 18
 
+📦 Install NPM:
 
-### Local
+sudo apt-get install npm -y
 
-To setup the repository locally follow the steps mentioned below:
+8️⃣ Install wkhtmltopdf
 
-1. Setup bench by following the [Installation Steps](https://frappeframework.com/docs/user/en/installation) and start the server
-   ```
-   bench start
-   ```
+sudo apt-get install xvfb libfontconfig wkhtmltopdf -y
 
-2. In a separate terminal window, run the following commands:
-   ```
-   # Create a new site
-   bench new-site erpnext.dev
-   
-   # Map your site to localhost
-   bench --site erpnext.dev add-to-hosts
-   ```
-	
-3. Get the ERPNext app and install it
-   ```
-   # Get the ERPNext app
-   bench get-app https://github.com/frappe/erpnext
-   
-   # Install the app
-   bench --site erpnext.dev install-app erpnext
-   ```
+🎛️ Setting Up Frappe Bench
+9️⃣ Install Frappe Bench
 
-4. Open the URL `http://erpnext.dev:8000/app` in your browser, you should see the app running
+sudo -H pip3 install frappe-bench --break-system-packages
+sudo -H pip3 install ansible --break-system-packages
 
-## Learning and community
+🔟 Initialize Frappe Bench
 
-1. [Frappe School](https://frappe.school) - Learn Frappe Framework and ERPNext from the various courses by the maintainers or from the community.
-2. [Official documentation](https://docs.erpnext.com/) - Extensive documentation for ERPNext.
-3. [Discussion Forum](https://discuss.erpnext.com/) - Engage with community of ERPNext users and service providers.
-4. [Telegram Group](https://erpnext_public.t.me) - Get instant help from huge community of users.
+bench init frappe-bench --frappe-branch version-15
+cd frappe-bench
 
+🔑 Change directory permissions:
 
-## Contributing
+chmod -R o+rx /home/[frappe-user]
 
-1. [Issue Guidelines](https://github.com/frappe/erpnext/wiki/Issue-Guidelines)
-1. [Report Security Vulnerabilities](https://erpnext.com/security)
-1. [Pull Request Requirements](https://github.com/frappe/erpnext/wiki/Contribution-Guidelines)
+1️⃣1️⃣ Create a New Site
 
+bench new-site [site-name]
 
-## Logo and Trademark Policy
+1️⃣2️⃣ Install ERPNext and Other Apps
 
-Please read our [Logo and Trademark Policy](TRADEMARK_POLICY.md).
+Download and install required apps:
 
-<br />
-<br />
-<div align="center" style="padding-top: 0.75rem;">
-	<a href="https://frappe.io" target="_blank">
-		<picture>
-			<source media="(prefers-color-scheme: dark)" srcset="https://frappe.io/files/Frappe-white.png">
-			<img src="https://frappe.io/files/Frappe-black.png" alt="Frappe Technologies" height="28"/>
-		</picture>
-	</a>
-</div>
+bench get-app payments
+bench get-app --branch version-15 erpnext
+bench get-app hrms
+bench --site [site-name] install-app erpnext
+bench --site [site-name] install-app hrms
+
+🌐 Start the server:
+
+bench start
+
+ERPNext will run on:
+
+http://[YOUR SERVER IP]:8000
+
+🌟 Deploying ERPNext in Production Mode
+1️⃣3️⃣ Enable Scheduler and Disable Maintenance Mode
+
+bench --site [site-name] enable-scheduler
+bench --site [site-name] set-maintenance-mode off
+
+1️⃣4️⃣ Setup Production Config
+
+sudo bench setup production [frappe-user]
+bench setup nginx
+
+🔄 Restart Supervisor:
+
+sudo supervisorctl restart all
+sudo bench setup production [frappe-user]
+
+🌐 Access your ERPNext site via:
+
+http://[YOUR SERVER IP]
+
+🎉 Congratulations!
+
+You have successfully installed ERPNext Version 15 on Ubuntu 24.04.
+✅ Start exploring the powerful features of ERPNext and streamline your business operations.
+💡 Notes & Troubleshooting
+
+    Double-check each step if you encounter issues, especially MariaDB configurations.
+    Ensure services like MariaDB, Redis, and Nginx are running.
+    For further help, visit the Official ERPNext Documentation.
