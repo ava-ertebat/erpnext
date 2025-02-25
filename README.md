@@ -28,12 +28,10 @@ To ensure optimal functionality, prepare your server with the following requirem
 ## 🏗️ **Step-by-Step Installation**
 
 ### 1️⃣ **Update and Upgrade Packages**
-```bash
 
-```
+
 
 sudo apt-get update -y && sudo apt-get upgrade -y
-
 ```
 Create a New User
 
