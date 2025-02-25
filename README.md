@@ -260,16 +260,15 @@ sudo bench setup production [frappe-user]
 
 ## 📬 **Get in Touch**
 
-
 💬 **We’d love to hear from you!**  
-Whether you have questions about the installation process, need support for your ERPNext deployment, or just want to share your feedback, feel free to reach out. We’re here to help you streamline your business operations smoothly.  
-
-If you have any questions or need assistance, feel free to contact me:
+Have questions about the installation process, need support with your ERPNext deployment, or want to share feedback? Feel free to reach out through any of the channels below — we’re here to help you streamline your business operations smoothly.  
 
 🌐 **Website:** [https://ava-ertebat.ir](https://ava-ertebat.ir)  
-📧 **Email:**  support@ava-ertebat.ir  
-📧 **Email2:** omidswordfish@gmail.com 
-📱 **WhatsApp:** [Chat with me on WhatsApp](https://wa.me/989163422797?text=Hi%20there!%20I%20need%20help%20with%20installing%20ERPNext%20and%20had%20some%20questions.)
+📧 **Support Email:** support@ava-ertebat.ir  
+📧 **Personal Email:** omidswordfish@gmail.com  
+
+📱 **WhatsApp:** [Chat with me on WhatsApp](https://wa.me/989163422797?text=Hi%20there!%20I%20would%20like%20some%20help%20regarding%20ERPNext%20installation%20on%20Ubuntu%2024.04.)
 
 ---
+
 
