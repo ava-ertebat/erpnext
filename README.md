@@ -50,6 +50,7 @@ cd /home/[frappe-user]
 
 
 📚 Installing Required Packages
+
 3️⃣ Install Git
 
 
