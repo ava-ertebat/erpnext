@@ -46,19 +46,19 @@ su [frappe-user]
 cd /home/[frappe-user]
 ```
 
-⚡ Replace [frappe-user] with your desired username, e.g., frappe.
+###⚡ Replace [frappe-user] with your desired username, e.g., frappe.
 
 
-📚 Installing Required Packages
+###📚 Installing Required Packages
 
-3️⃣ Install Git
+###3️⃣ Install Git
 
 
 ```
 sudo apt-get install git -y
 ```
 
-4️⃣ Install Python Dependencies
+###4️⃣ Install Python Dependencies
 
 ERPNext requires Python 3.11+ and other dependencies:
 
@@ -69,7 +69,7 @@ sudo apt-get install python3-setuptools python3-pip -y
 sudo apt install python3.12-venv -y
 ```
 
-5️⃣ Install MariaDB
+###5️⃣ Install MariaDB
 
 ERPNext relies on MariaDB:
 
@@ -81,16 +81,16 @@ sudo mysql_secure_installation
 ```
 
 
-⚡ During the configuration:
+###⚡ During the configuration:
 
-    1️⃣ Set a root password
-    2️⃣ Remove anonymous users
-    3️⃣ Allow remote root login (set N)
-    4️⃣ Remove the test database
-    5️⃣ Reload privilege tables
+   - 1️⃣ Set a root password
+   - 2️⃣ Remove anonymous users
+   - 3️⃣ Allow remote root login (set N)
+   - 4️⃣ Remove the test database
+   - 5️⃣ Reload privilege tables
 
 
-✏️ Edit the MariaDB configuration file:
+###✏️ Edit the MariaDB configuration file:
 
 
 
@@ -111,13 +111,13 @@ collation-server = utf8mb4_unicode_ci
 ```
 
 
-🔄 Restart MariaDB:
+###🔄 Restart MariaDB:
 
 ```
 sudo service mysql restart
 ```
 
-6️⃣ Install Redis Server
+###6️⃣ Install Redis Server
 
 
 ```
@@ -125,7 +125,8 @@ sudo apt-get install redis-server -y
 ```
 
 
-7️⃣ Install CURL, Node.js, NPM, and Yarn
+###7️⃣ Install CURL, Node.js, NPM, and Yarn
+
 🔗 Install CURL:
 
 
@@ -133,7 +134,7 @@ sudo apt-get install redis-server -y
 sudo apt install curl
 ```
 
-⚡ Install Node.js:
+###⚡ Install Node.js:
 
 
 ```
@@ -142,14 +143,14 @@ source ~/.profile
 nvm install 18
 ```
 
-📦 Install NPM:
+###📦 Install NPM:
 
 
 ```
 sudo apt-get install npm -y
 ```
 
-8️⃣ Install wkhtmltopdf
+###8️⃣ Install wkhtmltopdf
 
 
 ```
@@ -157,7 +158,8 @@ sudo apt-get install xvfb libfontconfig wkhtmltopdf -y
 ```
 
 🎛️ Setting Up Frappe Bench
-9️⃣ Install Frappe Bench
+
+###9️⃣ Install Frappe Bench
 
 
 ```
@@ -165,7 +167,7 @@ sudo -H pip3 install frappe-bench --break-system-packages
 sudo -H pip3 install ansible --break-system-packages
 ```
 
-🔟 Initialize Frappe Bench
+###🔟 Initialize Frappe Bench
 
 
 ```
@@ -173,14 +175,14 @@ bench init frappe-bench --frappe-branch version-15
 cd frappe-bench
 ```
 
-🔑 Change directory permissions:
+###🔑 Change directory permissions:
 
 
 ```
 chmod -R o+rx /home/[frappe-user]
 ```
 
-1️⃣1️⃣ Create a New Site
+###1️⃣1️⃣ Create a New Site
 
 
 ```
@@ -188,7 +190,8 @@ bench new-site [site-name]
 ```
 
 
-1️⃣2️⃣ Install ERPNext and Other Apps
+###1️⃣2️⃣ Install ERPNext and Other Apps
+
 Download and install required apps:
 
 
@@ -200,7 +203,7 @@ bench --site [site-name] install-app erpnext
 bench --site [site-name] install-app hrms
 ```
 
-🌐 Start the server:
+###🌐 Start the server:
 
 
 ```
@@ -209,11 +212,13 @@ bench start
 
 
 ERPNext will run on:
-🌐 http://[YOUR SERVER IP]:8000
+
+###🌐 http://[YOUR SERVER IP]:8000
 
 
-🌟 Deploying ERPNext in Production Mode
-1️⃣3️⃣ Enable Scheduler and Disable Maintenance Mode
+###🌟 Deploying ERPNext in Production Mode
+
+###1️⃣3️⃣ Enable Scheduler and Disable Maintenance Mode
 
 
 ```
@@ -222,7 +227,7 @@ bench --site [site-name] set-maintenance-mode off
 ```
 
 
-1️⃣4️⃣ Setup Production Config
+###1️⃣4️⃣ Setup Production Config
 
 
 ```
@@ -231,7 +236,7 @@ bench setup nginx
 ```
 
 
-🔄 Restart Supervisor:
+###🔄 Restart Supervisor:
 
 
 ```
@@ -240,10 +245,12 @@ sudo bench setup production [frappe-user]
 ```
 
 
-🌐 Access your ERPNext site via:
-http://[YOUR SERVER IP]
+###🌐 Access your ERPNext site via:
 
-🎉 Congratulations!
+###http://[YOUR SERVER IP]
 
-You have successfully installed ERPNext Version 15 on Ubuntu 24.04.
-✅ Start exploring the powerful features of ERPNext and streamline your business operations.
+#🎉 Congratulations!
+
+###You have successfully installed ERPNext Version 15 on Ubuntu 24.04.
+
+##✅ Start exploring the powerful features of ERPNext and streamline your business operations.
